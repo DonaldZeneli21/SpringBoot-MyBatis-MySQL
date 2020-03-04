@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myproject.mapper.TravelMapper">
+
+	<select id="getTravel" resultType="com.myproject.dto.TravelDTO">
+		SELECT * FROM travel
+	</select>
+
+	<select id="getTravelByDates"
+		parameterType="com.myproject.dto.TravelDTO"
+		resultType="com.myproject.dto.TravelDTO">
+		SELECT * FROM travel
+		<where>
+			<if test="dateFrom != null">
+				DATE_FROM = #{dateFrom}
+			</if>
+			<if test="dateTo != null">
+				AND DATE_TO = #{dateTo}
+			</if>
+		</where>
+	</select>
+
+
+</mapper>

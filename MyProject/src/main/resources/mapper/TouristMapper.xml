@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myproject.mapper.TouristMapper">
+
+	<select id="getTourist"
+		resultType="com.myproject.dto.TouristDTO">
+		SELECT * FROM tourist
+	</select>
+
+	<select id="getTouristByName"
+		parameterType="com.myproject.dto.TouristDTO"
+		resultType="com.myproject.dto.TouristDTO">
+		SELECT * FROM tourist
+		<where>
+			<if test="touristName !=null">
+				TOURIST_NAME = #{touristName}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertTourist"
+		parameterType="com.myproject.dto.TouristDTO">
+		INSERT INTO tourist
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="idTourist != null">
+				ID_TOURIST,
+			</if>
+			<if test="touristName != null">
+				TOURIST_NAME,
+			</if>
+			<if test="touristSurname != null">
+				TOURIST_SURNAME,
+			</if>
+			<if test="touristEmail != null">
+				TOURIST_EMAIL,
+			</if>
+			<if test="touristBithdate != null">
+				TOURIST_BITHDATE
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="idTourist != null">
+				#{idTourist},
+			</if>
+			<if test="touristName != null">
+				#{touristName},
+			</if>
+			<if test="touristSurname != null">
+				#{touristSurname},
+			</if>
+			<if test="touristEmail != null">
+				#{touristEmail},
+			</if>
+			<if test="touristBithdate != null">
+				#{touristBithdate}
+			</if>
+		</trim>
+	</insert>
+
+</mapper>
