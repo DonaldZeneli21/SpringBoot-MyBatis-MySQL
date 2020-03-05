@@ -37,4 +37,18 @@ public class TouristDAOImpl implements TouristDAO{
 
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public int updateTourist(TouristDTO request) {
+		int updated = mapper.updateTourist(request);
+		return updated;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public int deleteTourist(TouristDTO request) {
+		int deleted = mapper.deleteTourist(request);
+		return deleted;
+	}
+
 }

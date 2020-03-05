@@ -32,4 +32,16 @@ public class TouristServiceImpl implements TouristService{
 		return dao.insertTourist(request);
 	}
 
+	@Override
+	public int updateTourist(TouristDTO request) {
+	
+		return dao.updateTourist(request);
+	}
+
+	@Override
+	public int deleteTourist(TouristDTO request) {
+	
+		return dao.deleteTourist(request);
+	}
+
 }

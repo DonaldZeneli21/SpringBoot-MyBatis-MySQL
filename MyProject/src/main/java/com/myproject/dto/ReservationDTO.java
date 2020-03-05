@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class ReservationDTO {
 
 	private Long idReservation;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date cancelDate;
 	private boolean flagCancelled;
 	@JsonFormat(pattern="yyyy-MM-dd")

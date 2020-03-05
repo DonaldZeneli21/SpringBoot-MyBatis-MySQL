@@ -32,5 +32,17 @@ public class AccomodationServiceImpl implements AccomodationService{
 		return dao.insertAccomodation(request);
 	}
 
+	@Override
+	public int updateAccomodation(AccomodationDTO request) {
+		
+		return dao.updateAccomodation(request);
+	}
+
+	@Override
+	public int deleteAccomodation(AccomodationDTO request) {
+	
+		return dao.deleteAccomodation(request);
+	}
+
 
 }

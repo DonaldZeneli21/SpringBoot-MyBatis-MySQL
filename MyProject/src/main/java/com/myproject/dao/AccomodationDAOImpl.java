@@ -36,4 +36,18 @@ public class AccomodationDAOImpl implements AccomodationDAO{
 
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public int updateAccomodation(AccomodationDTO request) {
+		int updated = mapper.updateAccomodation(request);
+		return updated;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public int deleteAccomodation(AccomodationDTO request) {
+		int deleted = mapper.deleteAccomodation(request);
+		return deleted;
+	}
+
 }

@@ -91,5 +91,54 @@ public class TouristController {
 			result.setError("Put data to insert a tourist!");
 		}
 		return ResponseEntity.ok(result);
-}
+	}
+	
+	@PostMapping(value = "/updateTourist")
+	public ResponseEntity<ResultDTO<Integer>> updateTourist(@RequestBody TouristDTO request){
+		
+		ResultDTO<Integer> result = new ResultDTO<Integer>();
+		
+		if((request.getIdTourist()!=null && request.getIdTourist()!=0)
+				&&(request.getTouristName() !=null && !request.getTouristName().equals(""))
+				&& (request.getTouristSurname()!=null && !request.getTouristSurname().equals(""))
+				&& (request.getTouristEmail()!= null && !request.getTouristEmail().equals(""))
+				&& request.getTouristBithdate()!=null) {
+			int updated = service.updateTourist(request);
+			
+			if(updated>0) {
+				result.setData(updated);
+				result.setSuccess(true);
+			}
+			else {
+				result.setError("Update gone wrong !");	
+			}
+		}
+		else {
+			result.setError("Put data to update !");
+		}
+		
+		return ResponseEntity.ok(result);
+	}
+	
+	@PostMapping(value = "/deleteTourist")
+	public ResponseEntity<ResultDTO<Integer>> deleteTourist(@RequestBody TouristDTO request){
+		
+		ResultDTO<Integer> result = new ResultDTO<Integer>();
+		
+		if(request.getIdTourist()!=null && request.getIdTourist()!=0) {
+			int deleted = service.deleteTourist(request);
+			if(deleted>0) {
+				result.setData(deleted);
+				result.setSuccess(true);
+			}
+			else {
+				result.setError("Delete gone wrong !");
+			}
+		}
+		else {
+			result.setError("Put a valid Id to delete !");
+		}
+		
+		return ResponseEntity.ok(result);
+	}
 }

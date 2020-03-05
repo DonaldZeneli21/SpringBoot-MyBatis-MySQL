@@ -94,5 +94,53 @@ public class AccomodationController {
 		}
 		return ResponseEntity.ok(result);
 
-}
+	}
+	
+	@PostMapping(value = "/updateAccomodation")
+	public ResponseEntity<ResultDTO<Integer>> updateAccomodation(@RequestBody AccomodationDTO request){
+		
+		ResultDTO<Integer> result = new ResultDTO<Integer>();
+		
+		if((request.getIdAccomodation()!=null && request.getIdAccomodation()!=0)
+				&&(request.getAccomodationType() !=null && !request.getAccomodationType().equals(""))
+				&& (request.getAddress() !=null && !request.getAddress().equals(""))
+				&& request.getCost()!=0 && request.getRoomNumber() !=0) {
+			int updated = service.updateAccomodation(request);
+			if(updated >0) {
+				result.setData(updated);
+				result.setSuccess(true);
+			}
+			else {
+				result.setError("Update gone wrong !");
+				}
+		}
+		else {
+			result.setError("Put the needed data to update !");
+			}
+	
+		return ResponseEntity.ok(result);
+	
+	}
+	
+	@PostMapping(value = "/deleteAccomodation")
+	public ResponseEntity<ResultDTO<Integer>> deleteAccomodation(@RequestBody AccomodationDTO request){
+		
+		ResultDTO<Integer> result = new ResultDTO<Integer>();
+		
+		if(request.getIdAccomodation()!=null && request.getIdAccomodation()!=0) {
+			int deleted = service.deleteAccomodation(request);
+			if(deleted>0) {
+				result.setData(deleted);
+				result.setSuccess(true);
+			}
+			else {
+				result.setError("Delete gone wrong !");
+			}
+		}
+		else {
+			result.setError("Put a valid Id to delete !");
+		}
+		
+		return ResponseEntity.ok(result);
+	}
 }

@@ -2,12 +2,15 @@ package com.myproject.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 public class TouristDTO {
 
 	private Long idTourist;
 	private String touristName;
 	private String touristSurname;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date touristBithdate;
 	private String touristEmail;
 	

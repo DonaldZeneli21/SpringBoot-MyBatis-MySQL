@@ -59,4 +59,29 @@
 		</trim>
 	</insert>
 
+	<update id="updateAccomodation"
+		parameterType="com.myproject.dto.AccomodationDTO">
+		UPDATE accomodation
+		<set>
+			<if test="accomodationType !=null"> ACCOMODATION_TYPE = #{accomodationType},</if>
+			<if test="address !=null"> ADDRESS = #{address},</if>
+			<if test="cost !=null"> COST = #{cost},</if>
+			<if test="roomNumber !=null"> ROOM_NUMBER = #{roomNumber}</if>
+		</set>
+		<where>
+			<if test="idAccomodation !=null and idAccomodation !=0">
+				ID_ACCOMODATION = #{idAccomodation}
+			</if>
+		</where>
+	</update>
+
+	<delete id="deleteAccomodation"
+		parameterType="com.myproject.dto.AccomodationDTO">
+		DELETE FROM destination
+		<where>
+			<if test="idAccomodation !=null and idAccomodation !=0">
+				ID_ACCOMODATION = #{idAccomodation}
+			</if>
+		</where>
+	</delete>
 </mapper>

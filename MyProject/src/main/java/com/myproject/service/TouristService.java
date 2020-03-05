@@ -12,4 +12,6 @@ public interface TouristService {
 	public List<TouristDTO> getTourist();
 	public List<TouristDTO> getTouristByName(TouristDTO request);
 	public int insertTourist(TouristDTO request);
+	public int updateTourist(TouristDTO request);
+	public int deleteTourist(TouristDTO request);
 }
